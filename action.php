@@ -31,4 +31,27 @@ class action_plugin_fancysearch extends DokuWiki_Action_Plugin {
             $QUERY .= ' @'.trim($_REQUEST['namespace']);
         }
     }
+
+    function tpl_searchbox($namespaces, $all_img) {
+        $cur_val = isset($_REQUEST['namespace']) ? $_REQUEST['namespace'] : '';
+        $namespaces = array_merge(array('' => array('txt' => $this->getLang('all'), 'img' => $all_img)), $namespaces);
+
+        echo '<select class="fancysearch_namespace" name="namespace">';
+        foreach ($namespaces as $id => $ns) {
+            echo '<option value="' . $id . '"' . ($cur_val === $id ? ' selected' : '') . '>' . $ns['txt'] . '</option>';
+        }
+        ?>
+        </select>
+
+        <div id="fancysearch__ns_custom" class="closed" style="display: none;">
+            <ul>
+        <?php
+        foreach ($namespaces as $id => $ns) {
+            echo '<li class="' . $id . '_fancysearch"><img src="' . $ns['img'] . '" alt="' . $ns['txt'] . '" /></li>';
+        }
+        ?>
+            </ul>
+        </div>
+        <?php
+    }
 }
