@@ -38,7 +38,7 @@ class action_plugin_fancysearch extends DokuWiki_Action_Plugin {
 
         echo '<select class="fancysearch_namespace" name="namespace">';
         foreach ($namespaces as $id => $ns) {
-            echo '<option value="' . $id . '"' . ($cur_val === $id ? ' selected' : '') . '>' . $ns['txt'] . '</option>';
+            echo '<option value="' . $id . '"' . ($cur_val === $id ? ' selected="selected"' : '') . '>' . $ns['txt'] . '</option>';
         }
         ?>
         </select>
