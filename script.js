@@ -28,6 +28,8 @@ addInitEvent(function(){
         var qin = $('qsearch__in');
         qin.value = this.value;
         if (ns !== '') qin.value += ' @' + ns;
-        qin.events.keyup[1].call(qin, evt);
+        for (var i in qin.events) {
+            qin.events.keyup[i].call(qin, evt);
+        }
     });
 });
