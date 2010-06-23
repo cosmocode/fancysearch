@@ -21,4 +21,13 @@ addInitEvent(function(){
         jQuery(".fancysearch_namespace").val(jQuery(this).attr("class").match(/(?:(\w*)_fancysearch|^()$)/)[1]);
         jQuery(this).parent().animate({'top': (jQuery(this).prevAll().size()*-31) + 'px' },"slow");
     });
+
+    // Support qsearch
+    addEvent($('fancysearch__input'), 'keyup', function (evt) {
+        var ns = jQuery(".fancysearch_namespace").val();
+        var qin = $('qsearch__in');
+        qin.value = this.value;
+        if (ns !== '') qin.value += ' @' + ns;
+        qin.events.keyup[1].call(qin, evt);
+    });
 });

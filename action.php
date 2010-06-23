@@ -32,6 +32,20 @@ class action_plugin_fancysearch extends DokuWiki_Action_Plugin {
         }
     }
 
+    function tpl_searchform($namespaces, $all_img) {
+        global $QUERY;
+        echo '<form method="post" action="" accept-charset="utf-8">';
+        $this->tpl_searchbox($namespaces, $all_img);
+        ?>
+            <input type="hidden" name="do" value="search" />
+            <input type="hidden" id="qsearch__in"/>
+            <input class="query" id="fancysearch__input" type="text" name="id" autocomplete="off" value="<?php echo hsc(preg_replace('/ ?@\S+/','',$QUERY))?>" accesskey="f" />
+            <input class="submit" type="submit" name="submit" value="Search" />
+        </form>
+        <div id="qsearch__out" class="ajax_qsearch JSpopup"></div>
+        <?php
+    }
+
     function tpl_searchbox($namespaces, $all_img) {
         $cur_val = isset($_REQUEST['namespace']) ? $_REQUEST['namespace'] : '';
         $namespaces = array_merge(array('' => array('txt' => $this->getLang('all'), 'img' => $all_img)), $namespaces);
@@ -43,15 +57,16 @@ class action_plugin_fancysearch extends DokuWiki_Action_Plugin {
         ?>
         </select>
 
-        <div id="fancysearch__ns_custom" class="closed" style="display: none;">
-            <ul>
+            <div id="fancysearch__ns_custom" class="closed" style="display: none;">
+                <ul>
         <?php
         foreach ($namespaces as $id => $ns) {
             echo '<li class="' . $id . '_fancysearch"><img src="' . $ns['img'] . '" alt="' . $ns['txt'] . '" /></li>';
         }
         ?>
-            </ul>
-        </div>
+                </ul>
+            </div>
+
         <?php
     }
 }
