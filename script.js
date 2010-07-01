@@ -3,6 +3,8 @@ addInitEvent(function(){
      * SEARCH-BOX DROPDOWN
      */
 
+    if (!$('fancysearch__input') || !$('fancysearch__ns_custom')) return;
+
     // Replace HTML dropdown with the icon dropdown, but keep the current
     // value.
     jQuery(".fancysearch_namespace")
