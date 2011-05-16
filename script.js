@@ -15,13 +15,20 @@ addInitEvent(function(){
     var cur = '.' + jQuery(".fancysearch_namespace").val() + '_fancysearch';
     jQuery(cur).parent().css('top', (jQuery(cur).prevAll().size()*-31) + 'px');
 
-    jQuery("#fancysearch__ns_custom").show();
-    jQuery("#fancysearch__ns_custom").live("click", function(){
-        jQuery(this).toggleClass("closed");
-    });
-    jQuery("#fancysearch__ns_custom:not(.closed) li").live("click", function(){
-        jQuery(".fancysearch_namespace").val(jQuery(this).attr("class").match(/(?:(\w*)_fancysearch|^()$)/)[1]);
-        jQuery(this).parent().animate({'top': (jQuery(this).prevAll().size()*-31) + 'px' },"slow");
+    var nspicker = $('fancysearch__ns_custom');
+    nspicker.style.display = '';
+    addEvent(nspicker, 'click', function(evt) {
+        var closed = this.className.match(/(^|\s)closed(\s|$)/);
+        if (closed) {
+            this.className = this.className.replace(/(^|\s)closed(\s|$)/g, '');
+        } else {
+            this.className += ' closed';
+
+            var tgt = evt.target.tagName === 'IMG' ? evt.target.parentNode : evt.target;
+            jQuery(".fancysearch_namespace").val(tgt.className.match(/(?:(\w*)_fancysearch|^()$)/)[1]);
+            jQuery(tgt).parent().animate({'top': (jQuery(tgt).prevAll().size()*-31) + 'px' },"slow");
+
+        }
     });
 
     // Support qsearch
