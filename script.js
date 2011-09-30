@@ -37,8 +37,6 @@ addInitEvent(function(){
         var qin = $('qsearch__in');
         qin.value = this.value;
         if (ns !== '') qin.value += ' @' + ns;
-        for (var i in qin.events.keyup) {
-            qin.events.keyup[i].call(qin, evt);
-        }
+        jQuery(qin).trigger('keyup');
     });
 });
