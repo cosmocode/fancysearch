@@ -1,10 +1,5 @@
 <?php
-/**
- */
-
 if(!defined('DOKU_INC')) die();
-if(!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN',DOKU_INC.'lib/plugins/');
-require_once(DOKU_PLUGIN.'action.php');
 
 class action_plugin_fancysearch extends DokuWiki_Action_Plugin {
 
@@ -32,41 +27,29 @@ class action_plugin_fancysearch extends DokuWiki_Action_Plugin {
         }
     }
 
-    function tpl_searchform($namespaces, $all_img) {
+    function tpl_searchform($namespaces) {
         global $QUERY;
-        echo '<form method="post" action="" accept-charset="utf-8">';
-        $this->tpl_searchbox($namespaces, $all_img);
-        ?>
-            <input type="hidden" name="do" value="search" />
-            <input type="hidden" id="qsearch__in"/>
-            <input class="query" id="fancysearch__input" type="text" name="id" autocomplete="off" value="<?php echo hsc(preg_replace('/ ?@\S+/','',$QUERY))?>" accesskey="f" />
-            <input class="submit" type="submit" name="submit" value="Search" />
-        </form>
-        <div id="qsearch__out" class="ajax_qsearch JSpopup"></div>
-        <?php
-    }
-
-    function tpl_searchbox($namespaces, $all_img) {
         $cur_val = isset($_REQUEST['namespace']) ? $_REQUEST['namespace'] : '';
-        $namespaces = array_merge(array('' => array('txt' => $this->getLang('all'), 'img' => $all_img)), $namespaces);
 
+        echo '<form method="post" action="" accept-charset="utf-8">';
         echo '<select class="fancysearch_namespace" name="namespace">';
-        foreach ($namespaces as $id => $ns) {
-            echo '<option value="' . $id . '"' . ($cur_val === $id ? ' selected="selected"' : '') . '>' . $ns['txt'] . '</option>';
+        foreach ($namespaces as $ns => $class){
+            echo '<option value="'.hsc($ns).'"'.($cur_val === $ns ? ' selected="selected"' : '').'>'.hsc($ns).'</option>';
         }
-        ?>
-        </select>
-
-            <div id="fancysearch__ns_custom" class="closed" style="display: none;">
-                <ul>
-        <?php
-        foreach ($namespaces as $id => $ns) {
-            echo '<li class="' . $id . '_fancysearch"><img src="' . $ns['img'] . '" alt="' . $ns['txt'] . '" /></li>';
+        echo '</select>';
+        echo '<div id="fancysearch__ns_custom" class="closed" style="display: none;">';
+        echo '<ul>';
+        foreach ($namespaces as $ns => $class) {
+            echo '<li class="fancysearch_ns_'.hsc($class).'">'.hsc($ns).'</li>';
         }
-        ?>
-                </ul>
-            </div>
+        echo '</ul>';
+        echo '</div>';
 
-        <?php
+        echo '<input type="hidden" name="do" value="search" />';
+        echo '<input type="hidden" id="qsearch__in"/>';
+        echo '<input class="query" id="fancysearch__input" type="text" name="id" autocomplete="off" value="'.hsc(preg_replace('/ ?@\S+/','',$QUERY)).'" accesskey="f" />';
+        echo '<input class="submit" type="submit" name="submit" value="Search" />';
+        echo '</form>';
+        echo '<div id="qsearch__out" class="ajax_qsearch JSpopup"></div>';
     }
 }

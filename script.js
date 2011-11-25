@@ -24,8 +24,8 @@ addInitEvent(function(){
         } else {
             this.className += ' closed';
 
-            var tgt = evt.target.tagName === 'IMG' ? evt.target.parentNode : evt.target;
-            jQuery(".fancysearch_namespace").val(tgt.className.match(/(?:(\w*)_fancysearch|^()$)/)[1]);
+            var tgt = evt.target;
+            jQuery(".fancysearch_namespace").val(tgt.className.match(/^fancysearch_ns_(.*)$/)[1]);
             jQuery(tgt).parent().animate({'top': (jQuery(tgt).prevAll().size()*-31) + 'px' },"slow");
 
         }
