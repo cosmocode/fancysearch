@@ -6,14 +6,14 @@ class action_plugin_fancysearch extends DokuWiki_Action_Plugin {
     /**
      * Register its handlers with the DokuWiki's event controller
      */
-    function register(&$controller) {
+    function register(Doku_Event_Handler &$controller) {
         $controller->register_hook('DOKUWIKI_STARTED', 'AFTER',  $this, '_fixquery');
     }
 
     /**
      * Put namespace into search
      */
-    function _fixquery(&$event, $param) {
+    function _fixquery(Doku_Event &$event, $param) {
         global $QUERY;
         global $ACT;
 
@@ -40,7 +40,7 @@ class action_plugin_fancysearch extends DokuWiki_Action_Plugin {
         echo '<div id="fancysearch__ns_custom" class="closed" style="display: none;">';
         echo '<ul>';
         foreach ($namespaces as $ns => $class) {
-            echo '<li class="fancysearch_ns_'.hsc($class).'">'.hsc($ns).'</li>';
+            echo '<li class="fancysearch_ns_'.$this->css_escape($class).'">'.hsc($ns).'</li>';
         }
         echo '</ul>';
         echo '</div>';
@@ -51,5 +51,9 @@ class action_plugin_fancysearch extends DokuWiki_Action_Plugin {
         echo '<input class="submit" type="submit" name="submit" value="Search" />';
         echo '</form>';
         echo '<div id="qsearch__out" class="ajax_qsearch JSpopup"></div>';
+    }
+
+    function css_escape($s) {
+        return hsc(str_replace(':', '_', $s));
     }
 }
