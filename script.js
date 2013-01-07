@@ -1,18 +1,22 @@
-addInitEvent(function(){
+jQuery(function(){
     /*
      * SEARCH-BOX DROPDOWN
      */
 
-    if (!$('fancysearch__input') || !$('fancysearch__ns_custom')) return;
+    if (!jQuery('#fancysearch__input, #fancysearch__ns_custom')) return;
 
     // Replace HTML dropdown with the icon dropdown, but keep the current
     // value.
-    jQuery(".fancysearch_namespace")
-          .replaceWith(jQuery('<input class="fancysearch_namespace" type="hidden" ' +
-                              'name="namespace" value="' +
-                              jQuery(".fancysearch_namespace").val() +
-                              '" />'));
-    var cur = '.' + jQuery(".fancysearch_namespace").val() + '_fancysearch';
+
+    var oldNamespaceSelect = jQuery(".fancysearch_namespace");
+    var newNamespaceSelect = jQuery('<input class="fancysearch_namespace" type="hidden" ' +
+        'name="namespace" value="' +
+        oldNamespaceSelect.val() +
+        '" />');
+
+    oldNamespaceSelect.replaceWith(newNamespaceSelect);
+
+    var cur = '.fancysearch_ns_' + oldNamespaceSelect.val();
     jQuery(cur).parent().css('top', (jQuery(cur).prevAll().size()*-31) + 'px');
 
     var nspicker = $('fancysearch__ns_custom');
@@ -25,7 +29,7 @@ addInitEvent(function(){
             this.className += ' closed';
 
             var tgt = evt.target;
-            jQuery(".fancysearch_namespace").val(tgt.className.match(/^fancysearch_ns_(.*)$/)[1]);
+            jQuery(".fancysearch_namespace").val(tgt.innerHTML);
             jQuery(tgt).parent().animate({'top': (jQuery(tgt).prevAll().size()*-31) + 'px' },"slow");
 
         }
