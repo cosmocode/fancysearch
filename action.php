@@ -49,7 +49,7 @@ class action_plugin_fancysearch extends DokuWiki_Action_Plugin {
         echo '</div>';
 
         echo '<input type="hidden" name="do" value="search" />';
-        echo '<input type="hidden" id="qsearch__in"/>';
+        echo '<input type="hidden" id="qsearch__in" value="" />';
         echo '<input class="query" id="fancysearch__input" type="text" name="id" autocomplete="off" value="'.hsc(preg_replace('/ ?@\S+/','',$QUERY)).'" accesskey="f" />';
         echo '<input class="submit" type="submit" name="submit" value="Search" />';
         echo '</form>';

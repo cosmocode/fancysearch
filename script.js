@@ -8,39 +8,43 @@ jQuery(function(){
     // Replace HTML dropdown with the icon dropdown, but keep the current
     // value.
 
-    var oldNamespaceSelect = jQuery(".fancysearch_namespace");
-    var newNamespaceSelect = jQuery('<input class="fancysearch_namespace" type="hidden" ' +
-        'name="namespace" value="' +
-        oldNamespaceSelect.val() +
-        '" />');
+    // replace dropdown with hidden field
+    var $oldNamespaceSelect = jQuery(".fancysearch_namespace");
+    var curNS = $oldNamespaceSelect.val();
+    var $newNamespaceSelect = jQuery('<input class="fancysearch_namespace" type="hidden" ' +
+                                    'name="namespace" value="' + curNS +
+                                    '" />');
+    $oldNamespaceSelect.replaceWith($newNamespaceSelect);
 
-    oldNamespaceSelect.replaceWith(newNamespaceSelect);
+    // show the picker
+    var $nspicker = jQuery('#fancysearch__ns_custom').show();
 
-    var cur = '.fancysearch_ns_' + oldNamespaceSelect.val();
-    jQuery(cur).parent().css('top', (jQuery(cur).prevAll().size()*-31) + 'px');
+    // scroll the picker to the position of the current namespace
+    var $curItem = jQuery('.fancysearch_ns_' + curNS);
+    $curItem.parent().css('top', ($curItem.prevAll().size()*-31) + 'px');
 
-    var nspicker = $('fancysearch__ns_custom');
-    nspicker.style.display = '';
-    addEvent(nspicker, 'click', function(evt) {
-        var closed = this.className.match(/(^|\s)closed(\s|$)/);
-        if (closed) {
-            this.className = this.className.replace(/(^|\s)closed(\s|$)/g, '');
+    // add picker mechanics
+    $nspicker.click(function(evt) {
+        var $picker = jQuery(this);
+
+        if ($picker.hasClass('closed')) {
+            $picker.removeClass('closed');
         } else {
-            this.className += ' closed';
+            $picker.addClass('closed');
 
             var tgt = evt.target;
             jQuery(".fancysearch_namespace").val(tgt.innerHTML);
             jQuery(tgt).parent().animate({'top': (jQuery(tgt).prevAll().size()*-31) + 'px' },"slow");
-
         }
     });
 
     // Support qsearch
-    addEvent($('fancysearch__input'), 'keyup', function (evt) {
+    jQuery('#fancysearch__input').keyup(function (evt) {
         var ns = jQuery(".fancysearch_namespace").val();
-        var qin = $('qsearch__in');
-        qin.value = this.value;
-        if (ns !== '') qin.value += ' @' + ns;
-        jQuery(qin).trigger('keyup');
+        var $qin = jQuery('#qsearch__in');
+        var val = jQuery(this).val();
+        if (ns !== '') $val += ' @' + ns;
+        $qin.val(val);
+        $qin.keyup();
     });
 });
