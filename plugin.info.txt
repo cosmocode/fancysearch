@@ -1,7 +1,7 @@
 base     fancysearch
-author   Adrian Lang
-email    mail@adrianlang.de
-date     2013-06-19
+author   i-net software
+email  	 tools@inetsoftware.de
+date     2014-01-31
 name     Fancysearch Plugin
 desc     Provides a dropdown list for common namespaces enhancing the search input.
-url      http://ickewiki.de/dokumentation/fancysearch
+url      https://github.com/i-net-software/dokuwiki-plugin-fancysearch

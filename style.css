@@ -1,0 +1,48 @@
+#dokuwiki__sitetools.fancysearch__container {
+	font-size: 1em;
+}
+
+div.fancysearch__container form.search {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+div.fancysearch__container form.search div.no {
+	display: inline-block;
+}
+
+select.fancysearch_namespace {
+	background: transparent;
+	border: none;
+	display: inline-block;
+	left: 0px;
+	top: 0px;
+	bottom: 0px;
+	width: 49%;
+	z-index: 100;
+	position: absolute;
+	outline: none;
+	
+	-webkit-appearance: none;
+	margin: 2px;
+	padding: 0px 10px;
+}
+
+select.fancysearch_namespace:hover {
+	background: __highlight__;
+}
+
+select.fancysearch_namespace option:nth-child(2n+1) {
+	background: __light__;
+}
+
+select.fancysearch_namespace option {
+	background: __highlight__;
+}
+
+#dokuwiki__sitetools form.search #qsearch__in {
+	width: 36em;
+	box-sizing: border-box;
+	padding-left: 50%;
+}
