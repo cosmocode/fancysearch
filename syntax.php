@@ -26,7 +26,7 @@ class syntax_plugin_fancysearch extends DokuWiki_Syntax_Plugin {
     function handle($match, $state, $pos, &$handler) {
 		global $ID;
 
-		print $match = substr($match, 14, -2); // strip markup
+		$match = substr($match, 14, -2); // strip markup
 		
 		$spaces = array();
 		foreach( explode(' ', $match) as $ns ) {
