@@ -23,7 +23,7 @@ class syntax_plugin_fancysearch extends DokuWiki_Syntax_Plugin {
         $this->Lexer->addSpecialPattern('{{fancysearch>.*?}}', $mode, 'plugin_fancysearch');
     }
 
-    function handle($match, $state, $pos, &$handler) {
+    function handle($match, $state, $pos, Doku_Handler $handler) {
 		global $ID;
 
 		$match = substr($match, 14, -2); // strip markup
@@ -42,7 +42,7 @@ class syntax_plugin_fancysearch extends DokuWiki_Syntax_Plugin {
 
 	}            
 
-    function render($mode, &$renderer, $data) {
+    function render($mode, Doku_Renderer $renderer, $data) {
         global $conf, $ID, $FANCYDATA;
 		
 		list($state, $spaces) = $data;
