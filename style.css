@@ -43,6 +43,9 @@ select.fancysearch_namespace option {
 
 #dokuwiki__sitetools form.search #qsearch__in {
 	width: 36em;
+}
+
+#dokuwiki__sitetools form.search select ~ #qsearch__in {
 	box-sizing: border-box;
 	padding-left: 50%;
 }

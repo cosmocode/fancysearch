@@ -24,13 +24,19 @@ class helper_plugin_fancysearch extends DokuWiki_Plugin {
 		$searchForm = ob_get_contents();
 		ob_end_clean();
 
-		// Default Selct
-        $namespaceSelect =  '<select class="fancysearch_namespace" name="namespace">';
-        foreach ($namespaces as $element) {
-        	list($ns, $name, $class) = $element;
-            $namespaceSelect .= '<option class="fancysearch_ns_'.hsc($class).'" value="'.hsc($ns).'"'.($cur_val === $ns ? ' selected="selected"' : '').'>'.$name.'</option>';
-        }
-        $namespaceSelect .= '</select>';
+		// Default Select
+		if ( count($namespaces) == 1 ) {
+		    // Only one of them. All of them.
+            	list($ns, $name, $class) = $namespaces[0];
+            $namespaceSelect =  '<input name="namespace" value="'.hsc($ns).'" type="hidden"/>';
+		} else {
+            $namespaceSelect =  '<select class="fancysearch_namespace" name="namespace">';
+            foreach ($namespaces as $element) {
+            	list($ns, $name, $class) = $element;
+                $namespaceSelect .= '<option class="fancysearch_ns_'.hsc($class).'" value="'.hsc($ns).'"'.($cur_val === $ns ? ' selected="selected"' : '').'>'.$name.'</option>';
+            }
+            $namespaceSelect .= '</select>';
+		}
 
 		// Insert reight at the beginning.
 		$searchForm = substr_replace($searchForm, $namespaceSelect, strpos($searchForm, '<input'), 0);
