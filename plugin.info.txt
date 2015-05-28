@@ -1,7 +1,7 @@
 base     fancysearch
-author   i-net software
-email  	 tools@inetsoftware.de
-date     2014-07-15
+author   Adrian Lang
+email    dokuwiki@cosmocode.de
+date     2015-05-28
 name     Fancysearch Plugin
 desc     Provides a dropdown list for common namespaces enhancing the search input.
-url      https://github.com/i-net-software/dokuwiki-plugin-fancysearch
+url      https://github.com/cosmocode/fancysearch
