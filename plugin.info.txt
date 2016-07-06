@@ -1,7 +1,7 @@
 base     fancysearch
 author   Adrian Lang
 email    dokuwiki@cosmocode.de
-date     2016-01-24
+date     2016-02-03
 name     Fancysearch Plugin
 desc     Provides a dropdown list for common namespaces enhancing the search input.
 url      http://ickewiki.de/dokumentation/fancysearch
