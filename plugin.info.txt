@@ -1,5 +1,5 @@
 base     namespacesearch
-author   Adrian Lang
+author   i-net software / Gerry Weißbach (originated from Adrian Lang)
 email    tools@inetsoftware.de
 date     2017-04-24
 name     NamespaceSearch Plugin (formerly Fancysearch)
