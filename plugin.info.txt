@@ -1,7 +1,7 @@
-base     fancysearch
+base     namespacesearch
 author   Adrian Lang
-email    dokuwiki@cosmocode.de
-date     2015-05-28
-name     Fancysearch Plugin
+email    tools@inetsoftware.de
+date     2017-04-24
+name     NamespaceSearch Plugin (formerly Fancysearch)
 desc     Provides a dropdown list for common namespaces enhancing the search input.
-url      https://github.com/cosmocode/fancysearch
+url      https://github.com/i-net-software/dokuwiki-plugin-namespacesearch

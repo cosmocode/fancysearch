@@ -1,7 +1,7 @@
 <?php
 if(!defined('DOKU_INC')) die();
 
-class action_plugin_fancysearch extends DokuWiki_Action_Plugin {
+class action_plugin_namespacesearch extends DokuWiki_Action_Plugin {
 
     /**
      * Register its handlers with the DokuWiki's event controller

@@ -1,0 +1,1 @@
+# NamespaceSearch Plugin

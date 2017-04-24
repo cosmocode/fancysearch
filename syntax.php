@@ -13,14 +13,14 @@ if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN',DOKU_INC.'lib/plugins/');
 
 require_once(DOKU_PLUGIN.'syntax.php');
 
-class syntax_plugin_fancysearch extends DokuWiki_Syntax_Plugin {
+class syntax_plugin_namespacesearch extends DokuWiki_Syntax_Plugin {
 
     function getType() { return 'substition'; }
     function getPType() { return 'block'; }
     function getSort() { return 98; }
 
     function connectTo($mode) {
-        $this->Lexer->addSpecialPattern('{{fancysearch>.*?}}', $mode, 'plugin_fancysearch');
+        $this->Lexer->addSpecialPattern('{{namespacesearch>.*?}}', $mode, 'plugin_namespacesearch');
     }
 
     function handle($match, $state, $pos, Doku_Handler $handler) {
@@ -51,10 +51,10 @@ class syntax_plugin_fancysearch extends DokuWiki_Syntax_Plugin {
 		
 			$renderer->nocache();
 			
-			$helper = &plugin_load('helper', 'fancysearch');
+			$helper = &plugin_load('helper', 'namespacesearch');
 
-			$form = new Doku_Form('fancySearchForm', wl($ID));
-			$form->addElement(form_makeTextField('fancySearchField', $FANCYDATA['fancySearchField'], $this->getLang('keywords') . ':', 'fancySearchField', null, array('autocomplete'=>'off')));
+			$form = new Doku_Form('namespacesearchForm', wl($ID));
+			$form->addElement(form_makeTextField('namespacesearchField', $FANCYDATA['namespacesearchField'], $this->getLang('keywords') . ':', 'namespacesearchField', null, array('autocomplete'=>'off')));
 
 			/* List of Namespaces for the scope */
 			$names = array();
@@ -75,7 +75,7 @@ class syntax_plugin_fancysearch extends DokuWiki_Syntax_Plugin {
 			}
 
 			$renderer->doc .= $helper->tpl_searchform($names, true);
-			// $this->fancySearchSuggestionInserter($renderer);
+			// $this->namespacesearchSuggestionInserter($renderer);
 			
             return true;
         }
@@ -93,7 +93,7 @@ class syntax_plugin_fancysearch extends DokuWiki_Syntax_Plugin {
 		return trim($output);
 	}
 	
-	function fancySearchSuggestionInserter(&$renderer) {
+	function namespacesearchSuggestionInserter(&$renderer) {
 		global $FANCYDATA, $lang, $conf, $ID;
 
 		if ( !empty($FANCYDATA['query']) ) {

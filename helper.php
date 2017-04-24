@@ -10,7 +10,7 @@
 // must be run within Dokuwiki
 if(!defined('DOKU_INC')) die();
 
-class helper_plugin_fancysearch extends DokuWiki_Plugin {
+class helper_plugin_namespacesearch extends DokuWiki_Plugin {
 
     function tpl_searchform($namespaces, $return = false) {
         global $QUERY;
@@ -30,10 +30,10 @@ class helper_plugin_fancysearch extends DokuWiki_Plugin {
             	list($ns, $name, $class) = $namespaces[0];
             $namespaceSelect =  '<input name="namespace" value="'.hsc($ns).'" type="hidden"/>';
 		} else {
-            $namespaceSelect =  '<select class="fancysearch_namespace" name="namespace">';
+            $namespaceSelect =  '<select class="namespacesearch_namespace" name="namespace">';
             foreach ($namespaces as $element) {
             	list($ns, $name, $class) = $element;
-                $namespaceSelect .= '<option class="fancysearch_ns_'.hsc($class).'" value="'.hsc($ns).'"'.($cur_val === $ns ? ' selected="selected"' : '').'>'.$name.'</option>';
+                $namespaceSelect .= '<option class="namespacesearch_ns_'.hsc($class).'" value="'.hsc($ns).'"'.($cur_val === $ns ? ' selected="selected"' : '').'>'.$name.'</option>';
             }
             $namespaceSelect .= '</select>';
 		}
@@ -42,9 +42,9 @@ class helper_plugin_fancysearch extends DokuWiki_Plugin {
 		$searchForm = substr_replace($searchForm, $namespaceSelect, strpos($searchForm, '<input'), 0);
 
 		if ( $return ) {
-			return '<div id="dokuwiki__sitetools" class="fancysearch__container">'.$searchForm.'</div>';
+			return '<div id="dokuwiki__sitetools" class="namespacesearch__container">'.$searchForm.'</div>';
 		} else {
-			print '<div class="fancysearch__container">'.$searchForm.'</div>';
+			print '<div class="namespacesearch__container">'.$searchForm.'</div>';
 		}
     }
 

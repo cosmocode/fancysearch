@@ -1,18 +1,18 @@
-#dokuwiki__sitetools.fancysearch__container {
+#dokuwiki__sitetools.namespacesearch__container {
 	font-size: 1em;
 }
 
-div.fancysearch__container form.search {
+div.namespacesearch__container form.search {
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
 }
 
-div.fancysearch__container form.search div.no {
+div.namespacesearch__container form.search div.no {
 	display: inline-block;
 }
 
-select.fancysearch_namespace {
+select.namespacesearch_namespace {
 	background: transparent;
 	border: none;
 	display: inline-block;
@@ -29,15 +29,15 @@ select.fancysearch_namespace {
 	padding: 0px 10px;
 }
 
-select.fancysearch_namespace:hover {
+select.namespacesearch_namespace:hover {
 	background: __highlight__;
 }
 
-select.fancysearch_namespace option:nth-child(2n+1) {
+select.namespacesearch_namespace option:nth-child(2n+1) {
 	background: __light__;
 }
 
-select.fancysearch_namespace option {
+select.namespacesearch_namespace option {
 	background: __highlight__;
 }
 
